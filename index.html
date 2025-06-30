@@ -145,120 +145,85 @@
     </div>
 
     <script>
-        // Example JavaScript (unchanged from original)
-        function generateSelectedFormat() {
-            const selected = document.querySelector('.format-option.selected');
-            alert(`Generating resume in ${selected ? selected.textContent : 'default'} format...`);
-            document.getElementById('previewFrame').style.display = 'block';
-            document.getElementById('downloadSection').style.display = 'block';
-        }
-        
-        document.querySelectorAll('.format-option').forEach(option => {
-            option.addEventListener('click', () => {
-                document.querySelectorAll('.format-option').forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-            });
-        });
-    </script>
-</body>
-</html>
-
-<body>
-    <div class="container-main">
-        <h1>Kevin Kerns Resume (2025)</h1>
-        <div class="format-options">
-            <div class="format-option" data-format="modern">Modern</div>
-            <div class="format-option" data-format="sidebar">Sidebar</div>
-            <div class="format-option" data-format="creative">Creative</div>
-        </div>
-        <button class="generate-btn" onclick="generateSelectedFormat()">Generate Selected Resume Format</button>
-        <iframe id="previewFrame"></iframe>
-        <div id="downloadSection">
-            <button onclick="downloadHTML()">Download HTML</button>
-            <button onclick="printResume()">Print</button>
-        </div>
-    </div>
-
-    <script>
     let selectedFormat = 'sidebar';
     let currentResumeHTML = '';
 
-const resumeData = {
-    name: "Kevin Kerns",
-    title: "Electro-Mechanical Technician",
-    email: "klkerns80@gmail.com",
-    phone: "(326) 220-9901",
-    location: "Dayton, Ohio",
-    photoUrl: "https://i.postimg.cc/4dsxBnbq/d46r5r4p.png",
-    summary: "Experienced Electro-Mechanical Technician with over 10 years in industrial manufacturing environments. Proven expertise in maintaining, troubleshooting, and repairing complex electro-mechanical systems, automation equipment, and production machinery. Demonstrated track record of minimizing downtime, improving operational efficiency, and ensuring compliance with safety and food quality standards.",
-    experience: [
-        {
-            title: "Maintenance Mechanic",
-            company: "Independent Can Company - Vandalia, OH",
-            duration: "October 2023 - June 2025",
-            description: "Responsible for ensuring optimal performance of production machinery and mechanical equipment in a manufacturing environment.",
-            achievements: [
-                "Equipment Mastery Achievement: Demonstrated expertise across all equipment and machines with ability to efficiently set up, adjust, repair, operate, and maintain equipment within target timeframes",
-                "Line Support Excellence: Achieved proficiency in maintaining critical support equipment including tape machines, strappers, stretch wrappers, jet printers, conveyors, and labelers",
-                "Quality Control Leadership: Consistently identified quality issues during production monitoring and implemented effective corrective actions",
-                "Proactive Maintenance Planning: Successfully recommended equipment repairs and improvements to Management"
-            ]
-        },
-        {
-            title: "Maintenance Technician",
-            company: "Sugar Creek Packing Co. - Dayton, OH",
-            duration: "July 2022 - September 2023",
-            description: "Reduced downtime by responding to breakdowns and quickly returning equipment to normal operation. Diagnosed mechanical problems and determined corrective actions using blueprints, repair manuals, and parts catalogs.",
-            achievements: [
-                "Demonstrated strong working knowledge of electrical components, wiring, motors, gears, drives, and control systems while contributing to continuous improvements to increase efficiency and productivity",
-                "Performed routine preventive maintenance including inspecting drives, motors, belts, checking fluid levels, and replacing filters to reduce breakdown frequency",
-                "Maintained communication with Plant Management regarding maintenance issues to support production schedule adjustments",
-                "Supported all safety, food quality, and sanitation initiatives while complying with federal, state, and company regulations"
-            ]
-        },
-        {
-            title: "Electro-Mechanical Maintenance Technician",
-            company: "Witron Integrated Logistics, Inc. - Tipp City, OH",
-            duration: "January 2021 - May 2022",
-            description: "Maintained systems and equipment in a highly automated warehouse servicing distribution for Meijer grocery.",
-            achievements: [
-                "Supported Production Team through basic fault correction coaching and troubleshooting",
-                "Assisted in installation of new or refurbishment of existing system components",
-                "Maximized system performance and uptime through effective execution of maintenance-related activities",
-                "Applied strong electrical skills (3-Phase, 480V, DC and 24V controls) and mechanical expertise",
-                "Utilized knowledge of drive technology, PLC controls, inverters, and electrical measuring techniques",
-                "Worked with computer systems including Microsoft Office Suite and proprietary monitoring programs"
+    const resumeData = {
+        name: "Kevin Kerns",
+        title: "Electro-Mechanical Technician",
+        email: "klkerns80@gmail.com",
+        phone: "(326) 220-9901",
+        location: "Dayton, Ohio",
+        photoUrl: "https://i.postimg.cc/4dsxBnbq/d46r5r4p.png",
+        summary: "Experienced Electro-Mechanical Technician with over 10 years in industrial manufacturing environments. Proven expertise in maintaining, troubleshooting, and repairing complex electro-mechanical systems, automation equipment, and production machinery. Demonstrated track record of minimizing downtime, improving operational efficiency, and ensuring compliance with safety and food quality standards.",
+        experience: [
+            {
+                title: "Maintenance Mechanic",
+                company: "Independent Can Company - Vandalia, OH",
+                duration: "October 2023 - June 2025",
+                description: "Responsible for ensuring optimal performance of production machinery and mechanical equipment in a manufacturing environment.",
+                achievements: [
+                    "Equipment Mastery Achievement: Demonstrated expertise across all equipment and machines with ability to efficiently set up, adjust, repair, operate, and maintain equipment within target timeframes",
+                    "Line Support Excellence: Achieved proficiency in maintaining critical support equipment including tape machines, strappers, stretch wrappers, jet printers, conveyors, and labelers",
+                    "Quality Control Leadership: Consistently identified quality issues during production monitoring and implemented effective corrective actions",
+                    "Proactive Maintenance Planning: Successfully recommended equipment repairs and improvements to Management"
+                ]
+            },
+            {
+                title: "Maintenance Technician",
+                company: "Sugar Creek Packing Co. - Dayton, OH",
+                duration: "July 2022 - September 2023",
+                description: "Reduced downtime by responding to breakdowns and quickly returning equipment to normal operation. Diagnosed mechanical problems and determined corrective actions using blueprints, repair manuals, and parts catalogs.",
+                achievements: [
+                    "Demonstrated strong working knowledge of electrical components, wiring, motors, gears, drives, and control systems while contributing to continuous improvements to increase efficiency and productivity",
+                    "Performed routine preventive maintenance including inspecting drives, motors, belts, checking fluid levels, and replacing filters to reduce breakdown frequency",
+                    "Maintained communication with Plant Management regarding maintenance issues to support production schedule adjustments",
+                    "Supported all safety, food quality, and sanitation initiatives while complying with federal, state, and company regulations"
+                ]
+            },
+            {
+                title: "Electro-Mechanical Maintenance Technician",
+                company: "Witron Integrated Logistics, Inc. - Tipp City, OH",
+                duration: "January 2021 - May 2022",
+                description: "Maintained systems and equipment in a highly automated warehouse servicing distribution for Meijer grocery.",
+                achievements: [
+                    "Supported Production Team through basic fault correction coaching and troubleshooting",
+                    "Assisted in installation of new or refurbishment of existing system components",
+                    "Maximized system performance and uptime through effective execution of maintenance-related activities",
+                    "Applied strong electrical skills (3-Phase, 480V, DC and 24V controls) and mechanical expertise",
+                    "Utilized knowledge of drive technology, PLC controls, inverters, and electrical measuring techniques",
+                    "Worked with computer systems including Microsoft Office Suite and proprietary monitoring programs"
+                ]
+            }
+        ],
+        education: [
+            {
+                degree: "Associate of Applied Science in Small Business Management",
+                school: "Eastern Arizona College",
+                year: "May 2014"
+            },
+            {
+                degree: "Associate of Applied Science in General Technical Studies",
+                school: "Eastern Arizona College",
+                year: "May 2014"
+            }
+        ],
+        skills: {
+            technical: ["Electro-Mechanical Systems", "PLC Programming", "Motor Control Systems", "Hydraulic & Pneumatic Systems", "Troubleshooting & Diagnostics"],
+            manufacturing: ["Production Equipment Maintenance", "Preventive Maintenance", "Quality Control", "Safety Compliance", "Lean Manufacturing"],
+            tools: ["Multimeters & Oscilloscopes", "Hand & Power Tools", "Welding Equipment", "CAD Software", "CMMS Systems"],
+            certifications: [
+                "Project Management Fundamentals",
+                "Adult First Aid, CPR, AED Certification",
+                "OSHA 10 & OSHA 30 Safety Training",
+                "CFR 1910.178 Forklift Certification",
+                "Bookkeeping Certification",
+                "General Business Skills",
+                "Small Business Proprietor",
+                "Word Processing Specialist"
             ]
         }
-    ],
-    education: [
-        {
-            degree: "Associate of Applied Science in Small Business Management",
-            school: "Eastern Arizona College",
-            year: "May 2014"
-        },
-        {
-            degree: "Associate of Applied Science in General Technical Studies",
-            school: "Eastern Arizona College",
-            year: "May 2014"
-        }
-    ],
-    skills: {
-        technical: ["Electro-Mechanical Systems", "PLC Programming", "Motor Control Systems", "Hydraulic & Pneumatic Systems", "Troubleshooting & Diagnostics"],
-        manufacturing: ["Production Equipment Maintenance", "Preventive Maintenance", "Quality Control", "Safety Compliance", "Lean Manufacturing"],
-        tools: ["Multimeters & Oscilloscopes", "Hand & Power Tools", "Welding Equipment", "CAD Software", "CMMS Systems"],
-        certifications: [
-            "Project Management Fundamentals",
-            "Adult First Aid, CPR, AED Certification",
-            "OSHA 10 & OSHA 30 Safety Training",
-            "CFR 1910.178 Forklift Certification",
-            "Bookkeeping Certification",
-            "General Business Skills",
-            "Small Business Proprietor",
-            "Word Processing Specialist"
-        ]
-    }
-};
+    };
 
     // ---- RESUME FORMATTING FUNCTIONS ----
     window.generateSidebarFormat = function() {
